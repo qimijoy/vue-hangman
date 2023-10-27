@@ -5,7 +5,7 @@
 		<main class="hangman__content">
 			<HHangmanPicture :mistakes="0" />
 			<HMistakes v-if="false" :mistakes="[]" />
-			<HWord :letters="[]" :word="word" />
+			<HWord :letters="correctLetters" :word="word" />
 		</main>
 
 		<HPopup word="Тест" />
@@ -15,7 +15,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 
 import HHeader from '@/components/HHeader.vue';
 import HHangmanPicture from '@/components/HHangmanPicture.vue';
@@ -26,6 +26,22 @@ import HNotification from '@/components/HNotification.vue';
 
 // STATES
 const word = ref('Василий');
+const letters = ref([]);
+
+// COMPUTED
+const correctLetters = computed(() => letters.value.filter((letter) => word.value.includes(letter)));
+
+window.addEventListener('keydown', (event) => {
+	const letter = event.key;
+
+	if (ifCyrillic(letter)) {
+		letters.value.push(letter.toLowerCase());
+	}
+});
+
+const ifCyrillic = (letter) => {
+	return /[а-яА-ЯёЁ]/.test(letter);
+};
 </script>
 
 <style lang="less" scoped>
