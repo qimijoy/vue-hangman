@@ -1,6 +1,7 @@
 import { createApp } from 'vue';
 import App from './App.vue';
 
-const app = createApp(App);
+// STYLES
+import '@/assets/styles/main.less';
 
-app.mount('#hangman');
+createApp(App).mount('#hangman');
