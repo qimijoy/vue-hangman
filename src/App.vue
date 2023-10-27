@@ -4,7 +4,7 @@
 
 		<main class="hangman__content">
 			<section class="hangman__mistakes">
-				<HHangmanPicture :mistakes="0" />
+				<HHangmanPicture :mistakes="wrongLetters.length" />
 
 				<HMistakes v-show="wrongLetters.length" :mistakes="wrongLetters" />
 			</section>
@@ -13,7 +13,7 @@
 			</section>
 		</main>
 
-		<HPopup word="Тест" />
+		<HPopup v-show="false" :word="word" />
 
 		<HNotification :show="showNotification" />
 	</div>
@@ -83,11 +83,14 @@ const ifCyrillic = (letter) => {
 
 		@media @small {
 			flex-direction: row;
+			gap: 50px;
 		}
 	}
 
 	&__word {
 		margin-top: 20px;
+		display: flex;
+		justify-content: center;
 	}
 }
 </style>
