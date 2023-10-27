@@ -6,7 +6,7 @@
 			<section class="hangman__mistakes">
 				<HHangmanPicture :mistakes="wrongLetters.length" />
 
-				<HMistakes v-show="wrongLetters.length" :mistakes="wrongLetters" />
+				<HMistakes :mistakes="wrongLetters" />
 			</section>
 			<section class="hangman__word">
 				<HWord :letters="correctLetters" :word="word" />
@@ -20,7 +20,7 @@
 </template>
 
 <script setup>
-import { ref, computed, watch } from 'vue';
+import { ref, computed, watch, onMounted } from 'vue';
 
 import HHeader from '@/components/HHeader.vue';
 import HHangmanPicture from '@/components/HHangmanPicture.vue';
@@ -29,8 +29,10 @@ import HWord from '@/components/HWord.vue';
 import HPopup from '@/components/HPopup.vue';
 import HNotification from '@/components/HNotification.vue';
 
+import { getFirstname } from '@/api/getFirstName';
+
 // STATES
-const word = ref('василий');
+const word = ref('');
 const letters = ref([]);
 const showNotification = ref(false);
 const showPopup = ref(false);
@@ -55,10 +57,17 @@ watch(correctLetters, () => {
 	}
 });
 
-const onRestartHandler = () => {
+onMounted(async () => {
+	word.value = await getFirstname();
+});
+
+// FUNCTIONS
+const onRestartHandler = async () => {
 	showPopup.value = false;
 	popupStatus.value = 'lose';
 	letters.value = [];
+
+	word.value = await getFirstname();
 };
 
 window.addEventListener('keydown', (event) => {

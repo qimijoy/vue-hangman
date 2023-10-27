@@ -1,7 +1,7 @@
 <template>
 	<div class="mistakes">
 		<h3 class="mistakes__header">Ошибки</h3>
-		<div class="mistakes__letter">
+		<div v-show="mistakes.length" class="mistakes__letter">
 			<span v-for="(letter, index) in mistakes" :key="letter" class="mistakes__lette">
 				{{ index === mistakes.length - 1 ? letter : `${letter},&nbsp;` }}
 			</span>
