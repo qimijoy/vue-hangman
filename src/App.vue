@@ -13,14 +13,14 @@
 			</section>
 		</main>
 
-		<HPopup v-show="false" :word="word" />
-
 		<HNotification :show="showNotification" />
+
+		<HPopup v-show="showPopup" :word="word" :status="popupStatus" @restart="onRestartHandler" />
 	</div>
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed, watch } from 'vue';
 
 import HHeader from '@/components/HHeader.vue';
 import HHangmanPicture from '@/components/HHangmanPicture.vue';
@@ -33,12 +33,39 @@ import HNotification from '@/components/HNotification.vue';
 const word = ref('василий');
 const letters = ref([]);
 const showNotification = ref(false);
+const showPopup = ref(false);
+const popupStatus = ref('win');
 
 // COMPUTED
 const correctLetters = computed(() => letters.value.filter((letter) => word.value.includes(letter)));
 const wrongLetters = computed(() => letters.value.filter((letter) => !word.value.includes(letter)));
 
+// WATCHERS
+watch(wrongLetters, () => {
+	if (wrongLetters.value.length > 6) {
+		popupStatus.value = 'lose';
+		showPopup.value = true;
+	}
+});
+
+watch(correctLetters, () => {
+	if (word.value.split('').every((letter) => correctLetters.value.includes(letter))) {
+		popupStatus.value = 'win';
+		showPopup.value = true;
+	}
+});
+
+const onRestartHandler = () => {
+	showPopup.value = false;
+	popupStatus.value = 'lose';
+	letters.value = [];
+};
+
 window.addEventListener('keydown', (event) => {
+	if (showPopup.value) {
+		return;
+	}
+
 	const letter = event.key;
 
 	if (letters.value.includes(letter)) {

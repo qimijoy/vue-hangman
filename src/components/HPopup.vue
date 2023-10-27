@@ -3,8 +3,8 @@
 		<div class="popup">
 			<h2 v-if="status === 'win'" class="popup__win">Поздравляю, вы победили! 😃</h2>
 			<div v-else class="popup__lose">
-				<h2>Вы проиграли. 😕</h2>
-				<h3>...имя: {{ word }}</h3>
+				<h2>Вы проиграли 😕</h2>
+				<h3>Загаданное имя: {{ word }}</h3>
 			</div>
 			<button type="button" class="popup__button" @click="emit('restart')">Сыграть еще раз</button>
 		</div>
@@ -53,6 +53,7 @@ const emit = defineEmits({
 	& h2,
 	& h3 {
 		color: #fff;
+		margin-top: 10px;
 	}
 
 	&__button {
