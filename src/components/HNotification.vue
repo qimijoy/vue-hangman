@@ -1,24 +1,35 @@
 <template>
-	<div class="notification-container" :class="{ show: isVisible }">
-		<p>Вы уже вводили этот символ</p>
+	<div class="notification" :class="{ notification_show: show }">
+		<p class="notification__text">Вы уже вводили этот символ</p>
 	</div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
-
-const isVisible = ref(false);
-
-const open = () => {
-	isVisible.value = true;
-};
-
-const close = () => {
-	isVisible.value = false;
-};
-
-defineExpose({
-	open,
-	close,
+const props = defineProps({
+	show: {
+		type: Boolean,
+		default: false,
+	},
 });
 </script>
+
+<style lang="less" scoped>
+.notification {
+	position: fixed;
+	bottom: -50px;
+
+	background-color: rgba(0, 0, 0, 0.3);
+	border-radius: 10px 10px 0 0;
+	padding: 15px 20px;
+
+	transition: transform 0.3s ease-in-out;
+
+	&_show {
+		transform: translateY(-50px);
+	}
+
+	&__text {
+		margin: 0;
+	}
+}
+</style>

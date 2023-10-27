@@ -15,7 +15,7 @@
 
 		<HPopup word="Тест" />
 
-		<HNotification v-show="false" />
+		<HNotification :show="showNotification" />
 	</div>
 </template>
 
@@ -32,6 +32,7 @@ import HNotification from '@/components/HNotification.vue';
 // STATES
 const word = ref('василий');
 const letters = ref([]);
+const showNotification = ref(false);
 
 // COMPUTED
 const correctLetters = computed(() => letters.value.filter((letter) => word.value.includes(letter)));
@@ -41,11 +42,14 @@ window.addEventListener('keydown', (event) => {
 	const letter = event.key;
 
 	if (letters.value.includes(letter)) {
-		return;
-	}
+		showNotification.value = true;
+		setTimeout(() => (showNotification.value = false), 2000);
+	} else {
+		showNotification.value = false;
 
-	if (ifCyrillic(letter)) {
-		letters.value.push(letter.toLowerCase());
+		if (ifCyrillic(letter)) {
+			letters.value.push(letter.toLowerCase());
+		}
 	}
 });
 
