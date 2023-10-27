@@ -29,7 +29,7 @@ import HWord from '@/components/HWord.vue';
 import HPopup from '@/components/HPopup.vue';
 import HNotification from '@/components/HNotification.vue';
 
-import { getFirstname } from '@/api/getFirstName';
+import { getRandomName } from '@/api/getRandomName';
 
 // STATES
 const word = ref('');
@@ -58,16 +58,16 @@ watch(correctLetters, () => {
 });
 
 onMounted(async () => {
-	word.value = await getFirstname();
+	word.value = await getRandomName();
 });
 
 // FUNCTIONS
 const onRestartHandler = async () => {
+	word.value = await getRandomName();
+
 	showPopup.value = false;
 	popupStatus.value = 'lose';
 	letters.value = [];
-
-	word.value = await getFirstname();
 };
 
 window.addEventListener('keydown', (event) => {
