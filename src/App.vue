@@ -11,6 +11,10 @@
 			<section class="hangman__word">
 				<HWord :letters="correctLetters" :word="word" />
 			</section>
+
+			<section class="keyboard">
+				<Keyboard layouts="йцукенгшщзхъ|фывапролджэ|ячсмитьбю" @input="keyboardHandler" />
+			</section>
 		</main>
 
 		<HNotification :show="showNotification" />
@@ -28,6 +32,8 @@ import HMistakes from '@/components/HMistakes.vue';
 import HWord from '@/components/HWord.vue';
 import HPopup from '@/components/HPopup.vue';
 import HNotification from '@/components/HNotification.vue';
+
+import Keyboard from 'vue-keyboard';
 
 import { getRandomName } from '@/api/getRandomName';
 
@@ -70,12 +76,10 @@ const onRestartHandler = async () => {
 	letters.value = [];
 };
 
-window.addEventListener('keydown', (event) => {
+const inputLogic = (letter) => {
 	if (showPopup.value) {
 		return;
 	}
-
-	const letter = event.key;
 
 	if (letters.value.includes(letter)) {
 		showNotification.value = true;
@@ -87,7 +91,15 @@ window.addEventListener('keydown', (event) => {
 			letters.value.push(letter.toLowerCase());
 		}
 	}
+};
+
+window.addEventListener('keydown', (event) => {
+	inputLogic(event.key);
 });
+
+const keyboardHandler = (value) => {
+	inputLogic(value);
+};
 
 const ifCyrillic = (letter) => {
 	return /[а-яА-ЯёЁ]/.test(letter);
@@ -100,15 +112,16 @@ const ifCyrillic = (letter) => {
 .hangman {
 	display: flex;
 	flex-direction: column;
-	align-items: center;
 
 	max-width: 450px;
-	padding: 20px 30px;
 	margin: 0 auto;
+	padding: 20px 30px;
+	align-items: center;
 
 	&__content {
 		display: flex;
 		flex-direction: column;
+
 		margin-top: 20px;
 	}
 
@@ -124,9 +137,26 @@ const ifCyrillic = (letter) => {
 	}
 
 	&__word {
-		margin-top: 20px;
 		display: flex;
+
+		margin-top: 20px;
 		justify-content: center;
 	}
+}
+</style>
+
+<style lang="less">
+.keyboard {
+	margin-top: 20px;
+}
+
+.vue-keyboard-row {
+	padding-bottom: 5px;
+}
+
+.vue-keyboard-key {
+	min-width: 20px;
+	margin: 3px;
+	padding: 6px;
 }
 </style>

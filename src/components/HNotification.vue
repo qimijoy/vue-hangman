@@ -18,9 +18,10 @@ const props = defineProps({
 	position: fixed;
 	bottom: -50px;
 
-	background-color: rgba(0, 0, 0, 0.3);
-	border-radius: 10px 10px 0 0;
 	padding: 15px 20px;
+
+	background-color: rgb(0 0 0 / 0.3);
+	border-radius: 10px 10px 0 0;
 
 	transition: transform 0.3s ease-in-out;
 

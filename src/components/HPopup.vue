@@ -31,47 +31,54 @@ const emit = defineEmits({
 
 <style lang="less" scoped>
 .popup-overlay {
+	display: flex;
+
 	position: fixed;
 	top: 0;
+	right: 0;
 	bottom: 0;
 	left: 0;
-	right: 0;
-	background-color: rgba(0, 0, 0, 0.3);
 
-	display: flex;
+	background-color: rgb(0 0 0 / 0.3);
 	align-items: center;
 	justify-content: center;
 }
 
 .popup {
-	background: #54bc6c;
-	border-radius: 5px;
-	box-shadow: 0 15px 10px 3px rgba(0, 0, 0, 0.1);
 	padding: 20px;
+
 	text-align: center;
 
-	& h2,
-	& h3 {
-		color: #fff;
-		margin-top: 10px;
-	}
+	background: #54bc6c;
+	border-radius: 5px;
+	box-shadow: 0 15px 10px 3px rgb(0 0 0 / 0.1);
 
 	&__button {
-		cursor: pointer;
-		background-color: #fff;
-		color: #54bc6c;
-		border: 0;
 		margin-top: 20px;
 		padding: 12px 20px;
+
 		font-size: 16px;
 
-		&:active {
-			transform: scale(0.98);
-		}
+		color: #54bc6c;
+		background-color: #ffffff;
+		border: 0;
+
+		cursor: pointer;
 
 		&:focus {
 			outline: 0;
 		}
+
+		&:active {
+			transform: scale(0.98);
+		}
+	}
+
+	& h2,
+	& h3 {
+		margin-top: 10px;
+
+		color: #ffffff;
 	}
 }
 </style>

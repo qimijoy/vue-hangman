@@ -27,16 +27,16 @@ const props = defineProps({
 
 	&__letter {
 		display: inline-flex;
-		align-items: center;
-		justify-content: center;
 
 		width: 20px;
 		height: 50px;
+		margin: 0 3px;
 
 		font-size: 30px;
+		align-items: center;
+		justify-content: center;
 
 		border-bottom: 3px solid #54bc6c;
-		margin: 0 3px;
 	}
 }
 </style>

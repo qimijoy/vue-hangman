@@ -23,6 +23,7 @@ const props = defineProps({
 .mistakes {
 	display: flex;
 	flex-direction: column;
+
 	max-width: 200px;
 
 	&__header {
@@ -33,9 +34,7 @@ const props = defineProps({
 		display: inline-flex;
 		flex-direction: row;
 		flex-wrap: wrap;
-	}
 
-	&__letter {
 		font-size: 24px;
 	}
 }

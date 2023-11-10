@@ -27,6 +27,12 @@ npm run build
 npm run lint
 ```
 
+### Lint with Stylelint
+
+```sh
+npm run stylelint
+```
+
 ### Deploy to GitHub Pages
 
 ```sh
