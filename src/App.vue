@@ -115,7 +115,7 @@ const ifCyrillic = (letter) => {
 
 	max-width: 450px;
 	margin: 0 auto;
-	padding: 10px 10px;
+	padding: 10px;
 	align-items: center;
 
 	&__content {
