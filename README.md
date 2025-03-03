@@ -1,19 +1,11 @@
 # vue-hangman
 
-This template should help get you started developing with Vue 3 in Vite.
-
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+A simple hangman game on vue.
 
 ## Project Setup
 
 ```sh
-npm install
+npm ci
 ```
 
 ### Compile and Hot-Reload for Development
@@ -26,4 +18,34 @@ npm run dev
 
 ```sh
 npm run build
+```
+
+### Preview Production build
+
+```sh
+npm run preview
+```
+
+### Lint with ESLint
+
+```sh
+npm run eslint
+```
+
+### Lint with Stylelint
+
+```sh
+npm run stylelint
+```
+
+### Lint with ESLint & Stylelint
+
+```sh
+npm run lint
+```
+
+### Deploy to GitHub Pages
+
+```sh
+npm run deploy
 ```
